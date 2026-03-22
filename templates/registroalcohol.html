@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Alcoholímetro</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/registeralcohol-style.css">
+</head>
+<body>
+
+    <!-- Botón de menú hamburguesa -->
+    <div class="menu-toggle" aria-label="Abrir menú de navegación">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Menú lateral -->
+    <nav class="menu" aria-expanded="false">
+        <div class="logo-container">
+            <img src="/static/images/logo.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('acerca') }}">Acerca de</a></li>
+            <li><a href="{{ url_for('encuesta') }}">Encuesta</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Lado izquierdo: Datos personales -->
+        <div class="user-data">
+            <div class="avatar">
+                <img src="/static/images/avatar.png" alt="Avatar">
+            </div>
+            <h2>Datos del Estudiante</h2>
+            <div>
+                <p><strong>Matrícula:</strong> {{ estudiante.id }}</p>
+                <p><strong>Nombre:</strong> {{ estudiante.nombre }}</p>
+                <p><strong>Edad:</strong> {{ estudiante.edad }}</p>
+                <p><strong>Domicilio:</strong> {{ estudiante.domicilio }}</p>
+                <p><strong>Carrera:</strong> {{ estudiante.carrera }}</p>
+            </div>
+        </div>
+
+        <!-- Lado derecho: Formulario de registro -->
+        <div class="right-side">
+            <div class="title-container">
+                <h1>Registro de Alcoholímetro</h1>
+            </div>
+            
+            <form action="{{ url_for('registrar_alcohol') }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea enviar este registro?');">
+                <input type="hidden" name="matricula" value="{{ estudiante.id }}">
+                
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+                
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" required>
+                
+                <label for="id_operador">Nombre del Operador:</label>
+                <select name="id_operador" id="id_operador" required>
+                    <option value="" disabled selected>Seleccione un operador</option>
+                    {% for operador in operadores %}
+                        <option value="{{ operador.id }}">{{ operador.nombre }}</option>
+                    {% endfor %}
+                </select>
+                
+                <label for="nivel">Nivel de Alcohol (g/L):</label>
+                <select name="nivel" id="nivel" required>
+                    <option value="" disabled selected>Seleccione un nivel</option>
+                    {% for nivel in niveles %}
+                        <option value="{{ nivel }}">{{ nivel }} g/L</option>
+                    {% endfor %}
+                </select>
+                
+                <label for="comentario">Comentarios:</label>
+                <textarea id="comentario" name="comentario" rows="3" placeholder="Ingrese comentarios adicionales"></textarea>
+                
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+            
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    menu.setAttribute('aria-expanded', menu.classList.contains('active'));
+                });
+            }
+            
+            // Establecer fecha y hora actual
+            const now = new Date();
+            document.getElementById("fecha").value = now.toISOString().split('T')[0];
+            document.getElementById("hora").value = now.toTimeString().substring(0, 5);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Registro</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/editar_registro.css">
+</head>
+<body>
+    <!-- Menú lateral -->
+    <nav class="menu" aria-expanded="false">
+        <div class="logo-container">
+            <img src="/static/images/logo.png" alt="Logo" class="logo-img">
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('registro', matricula=matricula) }}">Volver</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botón hamburguesa -->
+    <div class="menu-toggle" aria-label="Abrir menú de navegación">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container-edit">
+        <h2>Editar Registro de Alcoholímetro</h2>
+        <!-- Mensajes flash -->
+        <!--
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        -->
+        
+        <form action="{{ url_for('actualizar_registro', id_registro=registro.idRegistro) }}"
+                method="POST"
+                onsubmit="return confirm('¿Está seguro de que desea actualizar este registro?');">
+            <input type="hidden" name="matricula" value="{{ matricula }}">
+            
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" value="{{ fecha }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" value="{{ hora }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_operador">Nombre del Operador:</label>
+                <select name="id_operador" id="id_operador" required>
+                    <option value="" disabled>Seleccione un operador</option>
+                    {% for operador in operadores %}
+                        <option value="{{ operador.id }}" 
+                                {% if operador.id == registro.idAutorizado %}selected{% endif %}>
+                            {{ operador.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="nivel">Nivel de Alcohol (g/L):</label>
+                <input type="number" id="nivel" name="nivel" 
+                       step="0.01" min="0" max="2" 
+                       value="{{ registro.Medicion }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="comentario">Comentarios:</label>
+                <textarea id="comentario" name="comentario" rows="3">{{ registro.Comentario or '' }}</textarea>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Actualizar Registro</button>
+                <a href="{{ url_for('registro', matricula=matricula) }}" class="btn-cancel">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    menu.setAttribute('aria-expanded', menu.classList.contains('active'));
+                });
+            }
+        });
+    </script>
+</body>
+</html>

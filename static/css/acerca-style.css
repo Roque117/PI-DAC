@@ -1,0 +1,246 @@
+/* === VARIABLES GLOBALES === */
+:root {
+    --main-color: rgb(65, 102, 126);       /* Color principal del diseño */
+    --transparent-main: rgba(65, 102, 126, 0.4); /* Color principal con transparencia */
+    --menu-transparent: rgba(65, 102, 126, 0.2); /* Mayor transparencia para el menú */
+    --accent-color: rgb(65, 102, 126);     /* Color de acento */
+    --accent-gradient: linear-gradient(135deg, rgba(65, 102, 126, 1) 0%, rgba(45, 80, 100, 1) 100%);
+    --error-color: #e74c3c;                /* Color para errores o advertencias */
+    --bg-color: #f4f6f8;                   /* Color de fondo del cuerpo */
+    --text-color: #333;                    /* Color de texto general */
+}
+
+/* === RESET Y TIPOGRAFÍA GLOBAL === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === ESTILO DEL BODY === */
+body {
+    background: var(--bg-color);          /* Fondo claro */
+    min-height: 100vh;                    /* Ocupa el alto total de la ventana */
+    display: flex;                        /* Flex para centrar el contenido */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* === MENÚ LATERAL OCULTO === */
+.menu {
+    position: fixed;
+    left: -250px;                         /* Fuera de la vista inicialmente */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: var(--menu-transparent);  /* Fondo más transparente */
+    backdrop-filter: blur(10px);          /* Efecto glassmorphism */
+    transition: all 0.3s ease;           /* Transición suave al mostrarse */
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.menu.active {
+    left: 0;
+}
+
+.menu .logo {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.menu .logo img {
+    max-width: 120px;
+    margin-bottom: 10px;
+}
+
+.menu .logo h1 {
+    color: white;
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+/* === LISTA DE NAVEGACIÓN DEL MENÚ === */
+.menu ul {
+    list-style: none;
+    padding: 20px 0;
+}
+
+.menu ul li {
+    padding: 15px 20px;
+    position: relative;
+}
+
+.menu ul li a {
+    color: var(--text-color);             /* Color de texto consistente */
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover y estilo activo del menú */
+.menu ul li a:hover,
+.menu ul li.active a {
+    color: #fff;
+    background: var(--transparent-main);   /* Fondo semitransparente en hover */
+}
+
+/* === SUBMENÚS === */
+.menu ul li.has-submenu > a::after {
+    content: '>';                         /* Flechita para indicar submenú */
+    position: absolute;
+    right: 20px;
+    transform: rotate(90deg);
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+/* Flechita rota al desplegar submenú */
+.menu ul li.has-submenu.active > a::after {
+    transform: rotate(-90deg);
+}
+
+/* Contenedor de submenú colapsado */
+.menu .submenu {
+    max-height: 0;
+    overflow: hidden;
+    background: var(--menu-transparent);   /* Fondo más transparente */
+    transition: max-height 0.3s ease;
+}
+
+/* Submenú expandido */
+.menu .submenu.active {
+    max-height: 200px;
+}
+
+/* Elementos dentro del submenú */
+.menu .submenu li {
+    padding: 10px 20px 10px 30px;
+}
+
+/* === BOTÓN DE MENÚ (HAMBURGUESA) === */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Barras del ícono hamburguesa */
+.menu-toggle div {
+    width: 100%;
+    height: 3px;
+    background: var(--main-color);        /* Usa color principal */
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al activar el menú */
+.menu-toggle.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* === CONTENEDOR CENTRAL DEL FORMULARIO === */
+.container {
+    width: 100%;
+    max-width: 800px;
+    background: var(--transparent-main);       /* Fondo semitransparente */
+    backdrop-filter: blur(10px);                /* Efecto glassmorphism */
+    border-radius: 20px;
+    padding: 30px;
+    padding-top: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+/* Contenido de la página */
+.user-data {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-data h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-data ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.user-data ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+}
+
+.user-data p {
+    margin: 10px 0;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.user-data .logo {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.user-data .logo img {
+    max-width: 150px;
+}
+
+/* Botón de encuesta */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+/* === DISEÑO RESPONSIVO PARA PANTALLAS PEQUEÑAS === */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .menu {
+        width: 200px;
+        left: -200px;
+    }
+
+    .menu.active {
+        left: 0;
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Usuario</title>
+    <link rel="stylesheet" href="/static/css/perfil-style.css">
+</head>
+<body>
+    <!-- Menú lateral -->
+    <nav class="menu" aria-expanded="false">
+        <div class="logo-container">
+            <img src="/static/images/logo.png" alt="Logo">
+            <h1>DETECTOR DE ALCOHOL EN EL CUERPO</h1>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li class="active"><a href="{{ url_for('perfil') }}{% if estudiante %}?matricula={{ estudiante.Matricula }}{% endif %}">Perfil</a></li>
+            <li><a href="{{ url_for('acerca') }}">Acerca de</a></li>
+            <li><a href="{{ url_for('encuesta') }}">Encuesta</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botón hamburguesa -->
+    <div class="menu-toggle" aria-label="Abrir menú de navegación">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Datos del perfil -->
+        <div class="user-data">
+            <h2>Perfil del Usuario</h2>
+            {% if estudiante %}
+                <div class="profile-info">
+                    <p><strong>Nombre:</strong> {{ estudiante.NombreCompleto }}</p>
+                    <p><strong>Matrícula:</strong> {{ estudiante.Matricula }}</p>
+                    <p><strong>Edad:</strong> {{ estudiante.Edad }}</p>
+                    <p><strong>Domicilio:</strong> {{ estudiante.Domicilio }}</p>
+                    <p><strong>Carrera:</strong> {{ estudiante.Carrera }}</p>
+                    <p><strong>Correo Electrónico:</strong> {{ estudiante.email }}</p>
+                </div>
+            {% else %}
+                <p class="error-message">No se encontraron datos del usuario. Por favor, ingresa una matrícula válida.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    menu.setAttribute('aria-expanded', menu.classList.contains('active'));
+                });
+            }
+        });
+    </script>
+</body>
+</html>

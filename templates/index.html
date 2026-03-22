@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DETECTOR DE ALCOHOL EN EL CUERPO</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Menú lateral -->
+    <nav class="menu" aria-expanded="false">
+        <div class="logo-container">
+            <img src="/static/images/logo.png" alt="Logo" class="centered-logo">
+            <h1>DAC</h1>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('acerca') }}">Acerca de</a></li>
+            <li><a href="{{ url_for('encuesta') }}">Encuesta</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botón hamburguesa -->
+    <div class="menu-toggle" aria-label="Abrir menú de navegación">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Logo global dentro del contenedor principal -->
+        <div class="logo-container">
+            <img src="/static/images/logo.png" alt="Logo">
+            <h1>DETECTOR DE ALCOHOL EN EL CUERPO</h1>
+        </div>
+
+        <!-- Formulario de búsqueda -->
+        <div class="login-form">
+            <!--<h2>DAC</h2> -->
+            <form id="formBuscar" action="{{ url_for('datospersonales') }}" method="GET">
+                <label for="matricula">Matrícula:</label>
+                <input type="text" id="matricula" name="matricula" placeholder="Ingresa tu matrícula" autocomplete="off" required>
+                <div class="results" id="results"></div>
+                <button type="submit">Buscar</button>
+            </form>
+            <div id="mensaje" style="color:red; display:none;">Por favor, selecciona una matrícula válida.</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    menu.setAttribute('aria-expanded', menu.classList.contains('active'));
+                });
+            }
+        });
+
+        document.getElementById('matricula').addEventListener('input', function() {
+            const input = this.value;
+            const resultsDiv = document.getElementById('results');
+
+            if (input.length > 0) {
+                fetch(`/buscar?query=${input}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        resultsDiv.innerHTML = '';
+                        data.forEach(item => {
+                            const p = document.createElement('p');
+                            p.className = 'result-item';
+                            p.textContent = `${item.id} - ${item.nombre} (${item.carrera})`;
+                            p.onclick = () => {
+                                document.getElementById('matricula').value = item.id;
+                                resultsDiv.innerHTML = '';
+                            };
+                            resultsDiv.appendChild(p);
+                        });
+                    });
+            } else {
+                resultsDiv.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Encuesta</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/encuesta-style.css">
+</head>
+<body>
+    <!-- Menú lateral -->
+    <nav class="menu" aria-expanded="false">
+        <div class="logo-container">
+            <img src="/static/images/logo.png" alt="Logo">
+            <h1>DETECTOR DE ALCOHOL EN EL CUERPO</h1>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('encuesta') }}">Encuesta</a></li>
+            <li class="active"><a href="{{ url_for('lista_encuestas') }}">Ver Encuestas</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botón hamburguesa -->
+    <div class="menu-toggle" aria-label="Abrir menú de navegación">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="user-data">
+            <h2>¡Gracias por tu participación, {{ encuesta.nombre }}!</h2>
+            
+            <div class="confirmation-message">
+                <img src="/static/images/agenda.png" alt="Confirmación" class="confirmation-icon">
+                <p>Tu encuesta ha sido enviada con éxito. Estos son los detalles:</p>
+                
+                <div class="encuesta-details">
+                    <p><strong>ID de Encuesta:</strong> {{ encuesta.id }}</p>
+                    <p><strong>Fecha:</strong> {{ encuesta.fecha }}</p>
+                    <p><strong>Satisfacción:</strong> {{ encuesta.satisfaccion }}</p>
+                    <p><strong>Comentarios:</strong> {{ encuesta.comentario or 'Ninguno' }}</p>
+                </div>
+                
+                <div class="confirmation-actions">
+                    <a href="{{ url_for('index') }}" class="btn-primary">Volver al Inicio</a>
+                    <a href="{{ url_for('encuesta') }}" class="btn-secondary">Enviar otra encuesta</a>
+                    <a href="{{ url_for('lista_encuestas') }}" class="btn-tertiary">Ver todas las encuestas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    menu.setAttribute('aria-expanded', menu.classList.contains('active'));
+                });
+            }
+        });
+    </script>
+</body>
+</html>
