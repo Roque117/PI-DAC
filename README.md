@@ -5,82 +5,73 @@
 ![Software](https://img.shields.io/badge/Software-Flask_|_Python-FFE873)
 ![Institucion](https://img.shields.io/badge/Institucion-UPQ-red)
 
-[cite_start]DAC (Detector de Alcohol en el Cuerpo) es un sistema integral de alcoholímetro basado en Arduino y una aplicación web de gestión[cite: 32]. [cite_start]El proyecto busca concientizar sobre el consumo responsable de alcohol en entornos universitarios y empresariales[cite: 34].
+DAC (Detector de Alcohol en el Cuerpo) es un sistema integral de alcoholímetro basado en Arduino y una aplicación web de gestión. El proyecto busca concientizar sobre el consumo responsable de alcohol en entornos universitarios y empresariales.
 
 ---
 
 ## Equipo de Trabajo e Interesados
 
 ### Desarrolladores (Grupo S203/S206):
-* [cite_start]Aguirre Viveros Roque Josue: Desarrollo de software y gestión de datos[cite: 191].
-* [cite_start]Arvizu Rueda Emiliano: Gestor del proyecto, desarrollo de software y gestión de datos[cite: 28, 191].
-* [cite_start]Barrón Mendoza Eduardo: Desarrollo de software y gestión de datos[cite: 189].
-* [cite_start]Jiménez de Santiago Jesús: Desarrollo de software y hardware[cite: 189].
-* [cite_start]Francisco Nicolas Ana: Desarrollo de software y hardware[cite: 191].
-* [cite_start]Hernández Vicencio María Inés: Desarrollo de software y gestión de datos[cite: 191].
-* [cite_start]Rodríguez Ruiz Ian David: Integrante del equipo[cite: 9].
+* Aguirre Viveros Roque Josue: Desarrollo de software y gestión de datos.
+* Arvizu Rueda Emiliano: Gestor del proyecto, desarrollo de software y gestión de datos.
+* Barrón Mendoza Eduardo: Desarrollo de software y gestión de datos.
+* Jiménez de Santiago Jesús: Desarrollo de software y hardware.
+* Francisco Nicolas Ana: Desarrollo de software y hardware.
+* Hernández Vicencio María Inés: Desarrollo de software y gestión de datos.
+* Rodríguez Ruiz Ian David: Integrante del equipo.
 
 ### Patrocinadores y Supervisores Académicos:
-* [cite_start]Patrocinadores: IQT (Instituto Queretano del Transporte), UPQ, y POES (Policía Estatal de Querétaro)[cite: 28, 227].
-* [cite_start]Supervisores: Francisco Antonio Castillo Velásquez, Cecilia Alvarado Salayandia, Jose Javier Moya Moya, y Jesus Calleja Angel[cite: 191].
+* Patrocinadores: IQT (Instituto Queretano del Transporte), UPQ, y POES (Policía Estatal de Querétaro).
+* Supervisores: Francisco Antonio Castillo Velásquez, Cecilia Alvarado Salayandia, Jose Javier Moya Moya, y Jesus Calleja Angel.
 
 ---
 
 ## Gestión del Proyecto (PMBOK 7.ª Edición)
 
-[cite_start]Este proyecto se ejecuta bajo la guía PMBOK 7.ª Edición, enfocada en la entrega de valor y principios adaptables[cite: 36, 37].
+Este proyecto se ejecuta bajo la guía PMBOK 7.ª Edición, enfocada en la entrega de valor y principios adaptables.
 
 ### Objetivos Principales:
-1. [cite_start]Objetivo General: Desarrollar un sistema completo de alcoholímetro en 3 cuatrimestres, que permita medir, almacenar y gestionar los resultados de las pruebas de alcohol en el aliento[cite: 54].
+1. Objetivo General: Desarrollar un sistema completo de alcoholímetro en 3 cuatrimestres, que permita medir, almacenar y gestionar los resultados de las pruebas de alcohol en el aliento.
 2. Objetivos Específicos:
-   * [cite_start]Desarrollo del sistema de medición con Arduino[cite: 56].
-   * [cite_start]Crear un cronograma de actividades[cite: 57].
-   * [cite_start]Desarrollo de la aplicación para la gestión y muestra de datos[cite: 58].
-   * [cite_start]Integración y almacenamiento de datos en una base de datos[cite: 59].
+   * Desarrollo del sistema de medición con Arduino.
+   * Crear un cronograma de actividades.
+   * Desarrollo de la aplicación para la gestión y muestra de datos.
+   * Integración y almacenamiento de datos en una base de datos.
 
 ### Cronograma y Alcance:
-* [cite_start]Fase 1 (Actual): Investigación, planificación, diseño conceptual del hardware y de la estructura de la aplicación[cite: 66, 67].
-* [cite_start]Fases Futuras: Implementación práctica, desarrollo de software y pruebas integrales[cite: 68, 167].
+* Fase 1 (Actual): Investigación, planificación, diseño conceptual del hardware y de la estructura de la aplicación.
+* Fases Futuras: Implementación práctica, desarrollo de software y pruebas integrales.
 
 ---
 
 ## Especificaciones Técnicas y Presupuesto
 
 ### Hardware (Rubro: Investigación y Desarrollo):
-* [cite_start]Microcontrolador: Arduino Uno o similar ($500 MXN)[cite: 125].
-* [cite_start]Sensor: Sensor de alcohol MQ-3 o equivalente ($150 MXN)[cite: 126].
-* [cite_start]Comunicación: Módulo Bluetooth/Wi-Fi (HC-05 o ESP8266) ($150 MXN)[cite: 127].
-* [cite_start]Interfaz: Pantalla LCD 16x2 ($150 MXN)[cite: 128].
-* [cite_start]Otros: Placa de pruebas, cables, resistencias, fuentes de alimentación ($400 MXN)[cite: 129].
+* Microcontrolador: Arduino Uno o similar ($500 MXN).
+* Sensor: Sensor de alcohol MQ-3 o equivalente ($150 MXN).
+* Comunicación: Módulo Bluetooth/Wi-Fi (HC-05 o ESP8266) ($150 MXN).
+* Interfaz: Pantalla LCD 16x2 ($150 MXN).
+* Otros: Placa de pruebas, cables, resistencias, fuentes de alimentación ($400 MXN).
 
 ### Software:
-* [cite_start]Licencias para desarrollo: Gratuito (para estudiantes)[cite: 133].
+* Licencias para desarrollo: Gratuito (para estudiantes).
 
-[cite_start]**Línea Base de Costos Estimada (Primer Cuatrimestre):** $1,950 MXN (Incluye reserva para riesgos conocidos y desconocidos por $600 MXN)[cite: 137, 144].
+**Línea Base de Costos Estimada (Primer Cuatrimestre):** $1,950 MXN (Incluye reserva para riesgos conocidos y desconocidos por $600 MXN).
 
 ---
 
 ## Gestión de Riesgos y Supuestos
 
 ### Riesgos Identificados:
-* [cite_start]Falta de componentes: Retrasos si no se consiguen los componentes electrónicos necesarios o si resultan más costosos[cite: 183].
-* [cite_start]Problemas técnicos: Dificultades imprevistas en la conexión de los sensores con el Arduino y la aplicación[cite: 185].
-* [cite_start]Falta de experiencia: Necesidad de aprendizaje en programación de Arduino y desarrollo de aplicaciones[cite: 186].
-* [cite_start]Tiempo limitado: Restricciones por carga académica y proyectos paralelos del equipo[cite: 222].
+* Falta de componentes: Retrasos si no se consiguen los componentes electrónicos necesarios.
+* Problemas técnicos: Dificultades imprevistas en la conexión de los sensores con el Arduino.
+* Falta de experiencia: Necesidad de aprendizaje en programación de Arduino y desarrollo de aplicaciones.
+* Tiempo limitado: Restricciones por carga académica y proyectos paralelos del equipo.
 
 ### Supuestos Clave:
-* [cite_start]Disponibilidad de espacios en la universidad y soporte académico de la UPQ[cite: 160, 161].
-* [cite_start]Acceso a recursos técnicos en línea y tutoriales[cite: 163].
-* [cite_start]Factibilidad técnica de los componentes seleccionados sin necesidad de alternativas de alto costo[cite: 164].
-
----
-
-## Glosario y Siglas
-* [cite_start]DAC: Detector de Alcohol en el Cuerpo[cite: 227].
-* [cite_start]UPQ: Universidad Politécnica de Querétaro[cite: 227].
-* [cite_start]POES: Policía Estatal de Querétaro[cite: 227].
-* [cite_start]IQT: Instituto Queretano del Transporte[cite: 227].
-
+* Disponibilidad de espacios en la universidad y soporte académico de la UPQ.
+* Acceso a recursos técnicos en línea y tutoriales.
+* Factibilidad técnica de los componentes seleccionados sin necesidad de alternativas de alto costo.
 ---
 
 ## Demostración y Capturas
